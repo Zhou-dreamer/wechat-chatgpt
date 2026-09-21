@@ -1,7 +1,7 @@
 FROM node:19 AS app
 
 # We don't need the standalone Chromium
-RUN apt-get install -y wget \
+RUN apt-get update && apt-get install -y --fix-missing wget \
     && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
     && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list \
     && apt-get update && apt-get -y install google-chrome-stable chromium  xvfb\
